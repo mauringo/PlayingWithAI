@@ -6,7 +6,7 @@ eyescascade = cv2.CascadeClassifier('./haarcascades/haarcascade_eye.xml')
 eyescascadeglasses = cv2.CascadeClassifier('./haarcascades/haarcascade_eye_tree_eyeglasses.xml')
 smileIdent = cv2.CascadeClassifier('./haarcascades/haarcascade_smile.xml')
 # To capture video from webcam. 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(-1)
 # To use a video file as input 
 # cap = cv2.VideoCapture('filename.mp4')
 
@@ -28,15 +28,11 @@ while True:
         smiles = smileIdent.detectMultiScale(roi_gray)
         eyes = eyescascade.detectMultiScale(roi_gray)
         eyesg = eyescascadeglasses.detectMultiScale(roi_gray)
-        
-        for (ex1,ey1,ew1,eh1) in smiles:
-            cv2.rectangle(roi_color,(ex1,ey1),(ex1+ew1,ey1+eh1),(255,255,0),2)
+    
             
-        
-        for (ex2,ey2,ew2,eh2) in eyes:
-            cv2.rectangle(roi_color,(ex2,ey2),(ex2+ew2,ey2+eh2),(0,255,0),2)
 
-       
+
+
         for (ex,ey,ew,eh) in eyesg:
             cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,0,255),2)
             
